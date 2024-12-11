@@ -2,8 +2,8 @@
 
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Canvas } from "@/components/Canvas";
 import { DocumentHeader, DocumentHeaderSkeleton } from "@/components/Document";
+import { TextEditor } from "@/components/TextEditor";
 import { DocumentLayout, DocumentProviders } from "@/layouts/Document";
 import { ErrorLayout } from "@/layouts/Error";
 import { Document, ErrorData } from "@/types";
@@ -13,7 +13,7 @@ type Props = {
   initialError: ErrorData | null;
 };
 
-export function CanvasDocumentView({ initialDocument, initialError }: Props) {
+export function TextDocumentView({ initialDocument, initialError }: Props) {
   const { id, error: queryError } = useParams<{ id: string; error: string }>();
   const [error, setError] = useState<ErrorData | null>(initialError);
 
@@ -37,7 +37,7 @@ export function CanvasDocumentView({ initialDocument, initialError }: Props) {
       <DocumentLayout
         header={<DocumentHeader documentId={initialDocument.id} />}
       >
-        <Canvas />
+        <TextEditor />
       </DocumentLayout>
     </DocumentProviders>
   );
